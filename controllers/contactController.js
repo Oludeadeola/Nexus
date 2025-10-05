@@ -2,13 +2,13 @@ const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose");
 const Contact = require("../models/contactmodel");
 
-// @desc Get all contacts
+
 const getContacts = asyncHandler(async (req, res) => {
   const contacts = await Contact.find();
   res.status(200).json(contacts);
 });
 
-// @desc Create a new contact
+
 const createContact = asyncHandler(async (req, res) => {
   console.log("The request body is:", req.body);
   const { name, email, phone } = req.body;
@@ -27,7 +27,7 @@ const createContact = asyncHandler(async (req, res) => {
   res.status(201).json(contact);
 });
 
-// @desc Get a single contact
+//  Get a single contact
 const getContact = asyncHandler(async (req, res) => {
   // Validate ObjectId before querying
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -45,7 +45,7 @@ const getContact = asyncHandler(async (req, res) => {
   res.status(200).json(contact);
 });
 
-// @desc Update a contact
+//  Update a contact
 const updateContact = asyncHandler(async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400);
@@ -68,7 +68,7 @@ const updateContact = asyncHandler(async (req, res) => {
   res.status(200).json(updatedContact);
 });
 
-// @desc Delete a contact
+//  Delete a contact
 const deleteContact = asyncHandler(async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400);
